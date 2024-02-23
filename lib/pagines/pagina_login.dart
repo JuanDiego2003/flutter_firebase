@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/components/noto_auth.dart';
 import 'package:flutter_firebase/components/textfield_auth.dart';
 
 class PaginaLogin extends StatefulWidget {
@@ -9,7 +12,6 @@ class PaginaLogin extends StatefulWidget {
 }
 
 class _PaginaLoginState extends State<PaginaLogin> {
-  
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
 
@@ -27,6 +29,9 @@ class _PaginaLoginState extends State<PaginaLogin> {
               size: 120,
               color: Color.fromARGB(255, 255, 240, 218),
             ),
+            SizedBox(
+              height: 25,
+            ),
             //Frase
             const Text(
               "Bienvenido",
@@ -37,43 +42,77 @@ class _PaginaLoginState extends State<PaginaLogin> {
               ),
             ),
             //Text divisori
-            const Row(
-              children: [
-                Expanded(
-                  child: Divider(
-                    thickness: 5,
-                    color: Color.fromARGB(255, 255, 240, 218),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  child: Text(
-                    "Fes login",
-                    style: TextStyle(
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: const Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      thickness: 5,
                       color: Color.fromARGB(255, 255, 240, 218),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Divider(
-                    thickness: 5,
-                    color: Color.fromARGB(255, 255, 240, 218),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    child: Text(
+                      "Fes login",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 255, 240, 218),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Divider(
+                      thickness: 5,
+                      color: Color.fromARGB(255, 255, 240, 218),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
             ),
             //TextField Email
             TextFieldAuth(
                 controller: controllerEmail,
                 hintText: "Email",
-                obscureText: false
-                ),
+                obscureText: false),
+            SizedBox(
+              height: 10,
+            ),
             //textField Password
             TextFieldAuth(
                 controller: controllerPassword,
                 hintText: "Password",
-                obscureText: true
-                )
+                obscureText: true),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("No ets membre?"),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: (){},
+                    child: Text(
+                      "Registra't",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 40, 71, 97)),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: 10,),
+          //Botó Login.
+          BotoAuth(),
           ],
         ),
       ),
