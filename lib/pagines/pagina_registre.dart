@@ -3,7 +3,8 @@ import 'package:flutter_firebase/components/noto_auth.dart';
 import 'package:flutter_firebase/components/textfield_auth.dart';
 
 class PaginaRegistre extends StatefulWidget {
-   PaginaRegistre({super.key});
+  final void Function() alFenClic;
+  PaginaRegistre({super.key, required this.alFenClic});
 
   @override
   State<PaginaRegistre> createState() => _PaginaRegistreState();
@@ -14,9 +15,10 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
 
   final TextEditingController controllerPassword = TextEditingController();
 
-  final TextEditingController controllerConfirmarPassword = TextEditingController();
+  final TextEditingController controllerConfirmarPassword =
+      TextEditingController();
 
-  void ferRegistre(){}
+  void ferRegistre() {}
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +85,9 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   //TextField Email
                   TextFieldAuth(
                       controller: controllerEmail,
@@ -114,7 +119,7 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                           width: 5,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: widget.alFenClic,
                           child: const Text(
                             "Fes Login",
                             style: TextStyle(
