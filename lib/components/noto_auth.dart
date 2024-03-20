@@ -1,11 +1,13 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class BotoAuth extends StatelessWidget {
   final String text;
   final Function()? onTap;
-  BotoAuth({super.key, required this.text, required this.onTap});
+  BotoAuth({
+    super.key,
+     required this.text,
+      required this.onTap
+    });
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

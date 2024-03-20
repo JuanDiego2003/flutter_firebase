@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/auth/servei_auth.dart';
 import 'package:flutter_firebase/components/noto_auth.dart';
 import 'package:flutter_firebase/components/textfield_auth.dart';
 
@@ -18,7 +19,25 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
   final TextEditingController controllerConfirmarPassword =
       TextEditingController();
 
-  void ferRegistre() {}
+  void ferRegistre(BuildContext context) async {
+    final serveiAuth = ServeiAuth();
+    final TextEditingController controllerConfirmarPassword =
+        TextEditingController();
+    try {
+      serveiAuth.registreAmbEmailIPassword(
+        controllerEmail.text,
+        controllerPassword.text,
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("Error"),
+          content: Text(e.toString()),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +157,7 @@ class _PaginaRegistreState extends State<PaginaRegistre> {
                   //Boto Login
                   BotoAuth(
                     text: "Resgistre",
-                    onTap: ferRegistre,
+                    onTap:()=> ferRegistre(context),
                   )
                 ],
               ),

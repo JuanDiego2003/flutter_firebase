@@ -1,24 +1,46 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/auth/servei_auth.dart';
 import 'package:flutter_firebase/components/noto_auth.dart';
 import 'package:flutter_firebase/components/textfield_auth.dart';
 
 class PaginaLogin extends StatefulWidget {
   final void Function() alFenClic;
-
-  const PaginaLogin({super.key,required this.alFenClic});
-
+  const PaginaLogin({
+    super.key,
+    required this.alFenClic
+    });
   @override
   State<PaginaLogin> createState() => _PaginaLoginState();
 }
 
 class _PaginaLoginState extends State<PaginaLogin> {
-  
   final TextEditingController controllerEmail = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
 
-  ferLogin() {}
+  void ferLogin(BuildContext context) async {
+    
+    final serveiAuth = ServeiAuth();
+
+    try {
+
+      await serveiAuth.loginAmbEmailIPassword(
+        controllerEmail.text, 
+        controllerPassword.text,
+      );
+
+    } catch (e) {
+
+      // ignore: use_build_context_synchronously
+      showDialog(
+        context: context, 
+        builder: (context) => AlertDialog(
+          title: const Text("Error"),
+          content: Text(e.toString()),
+        ),
+      );
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +149,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                   //Botó Login.
                   BotoAuth(
                     text: "Login",
-                    onTap: ferLogin,
+                    onTap: ()=> ferLogin(context),
                   ),
                 ],
               ),
