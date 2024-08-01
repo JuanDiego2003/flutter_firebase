@@ -1,6 +1,6 @@
 # flutter_firebase
 
-A new Flutter project.
+Proyecto en dart usando firebase usando el servicio de autentificacion, almacenamiento y almacenamiento de imagenes para crear una aplicacion de mensajeria con chats tipo whatsapp con opcion de añadir y cambiar imagenes de perfil de usuario.
 
 ## Getting Started
 
